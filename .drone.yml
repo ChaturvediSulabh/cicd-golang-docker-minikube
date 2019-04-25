@@ -19,7 +19,7 @@ steps:
     namespace: default
     server:
       from_secret: KUBE_SERVER
-    KUBE_TOKEN:
+    token:
       from_secret: KUBE_TOKEN
     KUBE_CA:
       from_secret: KUBE_CA
