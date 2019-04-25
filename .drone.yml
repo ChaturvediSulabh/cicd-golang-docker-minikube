@@ -16,7 +16,6 @@ steps:
   image: vallard/drone-kube
   settings:
     template: kubernetes/manifests/deployment.yml
-    namespace: default
     server:
       from_secret: KUBE_SERVER
     token:
