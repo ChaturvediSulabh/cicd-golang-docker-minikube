@@ -21,5 +21,5 @@ steps:
       from_secret: KUBE_SERVER
     token:
       from_secret: KUBE_TOKEN
-    KUBE_CA:
+    ca:
       from_secret: KUBE_CA
