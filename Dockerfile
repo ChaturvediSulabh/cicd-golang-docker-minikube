@@ -21,4 +21,4 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -installsuffix cgo -o /go/
 # Stage-2 Build
 FROM scratch
 COPY --from=build /go/bin/app /go/bin/app
-ENTRYPOINT [ "/go/bin/app" ]
+ENTRYPOINT [ "/go/bin/app" ] 

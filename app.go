@@ -121,7 +121,7 @@ func healthcheck(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(fmt.Sprintf("error: %v", duration.Seconds())))
 	} else {
 		w.WriteHeader(200)
-		w.Header().Set("HOW_ARE_YOU", "FINE_THANK_YOU")
+		w.Header().Set("HOW-ARE-YOU", "FINE_THANK_YOU")
 	}
 }
 
