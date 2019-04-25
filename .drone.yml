@@ -9,6 +9,5 @@ steps:
       from_secret: DOCKER_USERNAME
     password:
       from_secret: DOCKER_PASSWORD
-    repo: 
-      from_secret: GIT_REPO
+    repo: chaturvedisulabh/golang-restful-json-api
     dockerfile: ./Dockerfile
