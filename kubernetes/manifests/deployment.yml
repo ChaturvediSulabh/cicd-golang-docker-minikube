@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: golang-restful-json-api
+  labels:
+    app: golang-restful-json-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: golang-restful-json-api
+  template:
+    metadata:
+      labels:
+        app: golang-restful-json-api
+    spec:
+      containers:
+      - name: golang-restful-json-api
+        image: chaturvedisulabh/golang-restful-json-api
+        env:
+        - name: SERVE_PORT
+          value: "3000"
+        ports:
+        - containerPort: 3000
+        resources:
+        requests:
+          memory: "32Mi"
+          cpu: "125m"
+        limits:
+          memory: "64Mi"
+          cpu: "250m"
+        livenessProbe:
+          httpGet:
+          path: /healthz
+          port: $(SERVE_PORT)
+          httpHeaders:
+          - name: HOW_ARE_YOU
+            value: FINE_THANK_YOU
+        initialDelaySeconds: 3
+        periodSeconds: 3

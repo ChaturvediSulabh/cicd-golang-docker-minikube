@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 	"reflect"
+	"time"
 
 	"github.com/gorilla/mux"
 )
@@ -92,7 +93,7 @@ func Query(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	params := r.URL.Query()
 	var data string
-	for k, _ := range params {
+	for k := range params {
 		if k != "name" {
 			data = params.Get(k)
 		}
@@ -109,6 +110,18 @@ func Query(w http.ResponseWriter, r *http.Request) {
 				}
 			}
 		}
+	}
+}
+
+// Kubernetes Liveliness Probe Endpoint
+func healthcheck(w http.ResponseWriter, r *http.Request) {
+	duration := time.Since(time.Now())
+	if duration.Seconds() > 10 {
+		w.WriteHeader(500)
+		w.Write([]byte(fmt.Sprintf("error: %v", duration.Seconds())))
+	} else {
+		w.WriteHeader(200)
+		w.Header().Set("HOW_ARE_YOU", "FINE_THANK_YOU")
 	}
 }
 
@@ -131,7 +144,7 @@ func main() {
 	router.HandleFunc("/configs/{name}", Update).Methods("PUT")
 	router.HandleFunc("/configs/{name}", Delete).Methods("DELETE")
 	router.HandleFunc("/search", Query).Methods("GET")
-	fmt.Println(os.LookupEnv("SERVE_PORT"))
+	router.HandleFunc("/healthz", healthcheck).Methods("GET")
 	val, ok := os.LookupEnv("SERVE_PORT")
 	if !ok {
 		panic("SERVE_PORT not set") // Exit if SERVE_PORT is not set

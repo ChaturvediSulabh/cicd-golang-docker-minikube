@@ -1,5 +1,5 @@
 kind: pipeline
-name: deploy-on-minikube
+name: build-image-publish-to-docker-registry-and-deploy-on-kubernetes-cluster
 
 steps:
 - name: Build and Publish Image to Docker Registry
@@ -11,3 +11,15 @@ steps:
       from_secret: DOCKER_PASSWORD
     repo: chaturvedisulabh/golang-restful-json-api
     dockerfile: ./Dockerfile
+
+- name: deploy to kubernetes cluster
+  image: vallard/drone-kube
+  settings:
+    template: kubernetes/manifests/deployment.yml
+    namespace: default
+    KUBE_SERVER:
+      from_secret: KUBE_SERVER
+    KUBE_TOKEN:
+      from_secret: KUBE_TOKEN
+    KUBE_CA:
+      from_secret: KUBE_CA
