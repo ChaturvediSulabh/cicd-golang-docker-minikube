@@ -17,4 +17,9 @@ steps:
   settings:
     template: kubernetes/manifests/deployment.yml
     namespace: default
-    server: https://192.168.64.12:8443
+    KUBE_SERVER:
+      from_secret: KUBE_SERVER
+    KUBE_TOKEN:
+      from_secret: KUBE_TOKEN
+    KUBE_CA:
+      from_secret: KUBE_CA
