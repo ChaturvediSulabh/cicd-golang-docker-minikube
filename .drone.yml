@@ -11,8 +11,8 @@ steps:
       from_secret: DOCKER_PASSWORD
     repo: chaturvedisulabh/golang-restful-json-api
     dockerfile: ./Dockerfile
-
-- name: deploy to kubernetes cluster
+    
+- name: Deploy to kubernetes cluster
   image: vallard/drone-kube
   settings:
     template: kubernetes/manifests/deployment.yml
