@@ -21,4 +21,3 @@ create a simple HTTP service that stores and returns configurations that satisfy
 - **Config**
   - Name (string)
   - Data (key:value pairs)
-
