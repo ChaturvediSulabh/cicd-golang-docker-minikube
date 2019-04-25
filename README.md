@@ -1,4 +1,4 @@
-
+[![Build Status](https://cloud.drone.io/api/badges/ChaturvediSulabh/CICDWithGolangDockerMinikube/status.svg)](https://cloud.drone.io/ChaturvediSulabh/CICDWithGolangDockerMinikube)
 ## Introduction
 
 create a simple HTTP service that stores and returns configurations that satisfy certain conditions. Then, the service should be automatically deployed to kubernetes.
