@@ -21,3 +21,11 @@ create a simple HTTP service that stores and returns configurations that satisfy
 - **Config**
   - Name (string)
   - Data (key:value pairs)
+
+#### Tools and Frameworks Used
+- Code - Golang
+- CI/CD - DRONE CI
+- Container - Docker
+- Registry - Docker Hub
+- Kubernetes - MINIKUBE
+- Kubernetes - kubectl
